@@ -40,7 +40,8 @@ void Initiator::initiator_thread()
 
 			// TODO: Write your code
 			// Generate trans using gen_trans function and transport it to the Interconnector
-
+			tlm_generic_payload *trans = gen_trans(false, w_addr, data);
+			initiator_socket->nb_transport_fw(*trans, phase, delay);
 
 			wait(5, SC_NS);
 			w_addr++;
@@ -50,7 +51,8 @@ void Initiator::initiator_thread()
 		if (id == 1) {
 			// TODO: Write your code
 			// Generate trans using gen_trans function and transport it to the Interconnector
-			
+			tlm_generic_payload *trans = gen_trans(true, r_addr, nullptr);
+			initiator_socket->nb_transport_fw(*trans, phase, delay);
 
 			wait(5, SC_NS);
 			r_addr++;
@@ -58,7 +60,7 @@ void Initiator::initiator_thread()
 	}
 }
 
-tlm_sync_enum Initiator::nb_transport_bw(tlm_generic_payload& trans, tlm_phase& phase, sc_time& delay )
+tlm_sync_enum Initiator::nb_transport_bw(tlm_generic_payload& trans, tlm_phase& phase, sc_time& delay)
 {
 	sc_dt::uint64 address = trans.get_address();
 
@@ -88,4 +90,4 @@ tlm_sync_enum Initiator::nb_transport_bw(tlm_generic_payload& trans, tlm_phase& 
 		}
 		return TLM_ACCEPTED;
 	}
-  }
+}

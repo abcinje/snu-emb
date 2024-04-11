@@ -9,12 +9,14 @@ Interconnector::Interconnector(sc_module_name name, const unsigned int id)
 
 tlm_sync_enum Interconnector::nb_transport_fw(int id, tlm_generic_payload& trans, tlm_phase& phase, sc_time& t) {
 	// TODO: Write your code
+	initiator_socket->nb_transport_fw(trans, phase, t);
 
 	return TLM_ACCEPTED;
 }
 
 tlm_sync_enum Interconnector::nb_transport_bw(int id, tlm_generic_payload& trans, tlm_phase& phase, sc_time& t) {
 	// TODO: Write your code
+	target_socket->nb_transport_bw(trans, phase, t);
 
 	return TLM_ACCEPTED;
 }

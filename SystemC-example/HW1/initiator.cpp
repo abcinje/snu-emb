@@ -8,17 +8,26 @@ SC_MODULE(Counter) {
     void counter_process() {
         while (true) {
             // TODO: Increment count on positive clock edge
-			// Output the count value (HINT: write)
-            cout << "Count: " << count << endl; // Display count value
-            
-			// wait for next clock cycle
+            count++;
+
+            // Output the count value (HINT: write)
+            count_out.write(count);
+
+            // Display count value
+            cout << "Count: " << count << endl;
+
+            // wait for next clock cycle
+            wait();
         }
     }
 
     // Constructor
     SC_CTOR(Counter) {
         count = 0;
+
         // TODO: Define counter_process SC_THREAD and sensitivity to clock positive edge
+        SC_THREAD(counter_process);
+        sensitive << clk.pos();
     }
 };
 
@@ -29,8 +38,11 @@ int sc_main(int argc, char* argv[]) {
     sc_signal<int> count_out;       // Output signal for count value
 
     // TODO: Instantiate Counter module
+    Counter counter("counter");
+
     // Connect clock signal
     // Connect count output
+    counter(clk, count_out);
 
     // Start simulation
     sc_start(50, SC_NS); // Simulate for 50 ns

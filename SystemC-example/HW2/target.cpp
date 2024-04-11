@@ -25,17 +25,21 @@ void Target::send_response(tlm_generic_payload& trans)
 
 	// TODO: Write your code
 	// nb_transport_bw to the Interconnector (phase = END_REQ)
-
+	phase = END_REQ;
+	target_socket->nb_transport_bw(trans, phase, delay);
 
 	// Write response
 	if (trans.get_command() == TLM_WRITE_COMMAND)
 		// TODO: Write your code
 		// Copy the trans data to memory_data (Hint: Use trans.get_data_ptr() function)
+		memcpy(&memory_data[address*length], trans.get_data_ptr(), length);
 
 	// Read response
 	else
-		trans.set_data_ptr(&(memory_data[address*length]));
+		trans.set_data_ptr(&memory_data[address*length]);
 
 	// TODO: Write your code
 	// nb_transport_bw to the Interconnector (phase = BEGIN_RESP)
+	phase = BEGIN_RESP;
+	target_socket->nb_transport_bw(trans, phase, delay);
 }

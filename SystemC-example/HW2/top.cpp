@@ -17,4 +17,7 @@ Top::Top(sc_module_name name)
 	}
 
 	// TODO: Write your code (bind the modules)
+	for (int i = 0; i < 2; i++)
+		initiator[i]->initiator_socket.bind(ic->target_socket);
+	ic->initiator_socket.bind(target->target_socket);
 }
