@@ -1,5 +1,5 @@
-#ifndef _TOP_H_
-#define _TOP_H_
+#ifndef _TOP_HPP_
+#define _TOP_HPP_
 
 #include <systemc>
 

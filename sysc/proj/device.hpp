@@ -1,5 +1,5 @@
-#ifndef _DEVICE_H_
-#define _DEVICE_H_
+#ifndef _DEVICE_HPP_
+#define _DEVICE_HPP_
 
 #include <systemc>
 

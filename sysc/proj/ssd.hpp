@@ -1,5 +1,5 @@
-#ifndef _SSD_H_
-#define _SSD_H_
+#ifndef _SSD_HPP_
+#define _SSD_HPP_
 
 #include <cstdint>
 

@@ -1,5 +1,5 @@
-#ifndef _HOST_H_
-#define _HOST_H_
+#ifndef _HOST_HPP_
+#define _HOST_HPP_
 
 #include <systemc>
 
